@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>TREASURE — Teume Shop</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #07111e;
+            --card: #101f32;
+            --blue: #9bd8ff;
+            --white: #f4f8ff;
+            --muted: #a1b1c5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 7%;
+            border-bottom: 1px solid #263447;
+            background: #07111e;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--blue);
+        }
+
+        .logo small {
+            display: block;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 9px;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        nav a {
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--blue);
+        }
+
+        .nav-cart {
+            border: 1px solid #526a85;
+            border-radius: 30px;
+            padding: 10px 16px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 460px;
+            padding: 75px 8%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 80% 50%,
+                    #174c76 0%, transparent 42%),
+                linear-gradient(120deg, #07111e, #10243b);
+        }
+
+        .hero::after {
+            content: "✦";
+            position: absolute;
+            right: 10%;
+            top: 30px;
+            font-size: 280px;
+            color: #9bd8ff12;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .eyebrow {
+            color: var(--blue);
+            font-size: 12px;
+            letter-spacing: 5px;
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(43px, 7vw, 76px);
+            line-height: 1.05;
+            margin: 22px 0;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.9;
+            max-width: 440px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--blue);
+            color: #07111e;
+            padding: 15px 27px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 800;
+            transition: .3s;
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            background: white;
+            box-shadow: 0 8px 30px #9bd8ff30;
+        }
+
+        .hero-note {
+            margin-top: 35px;
+            color: #7891aa;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* CATEGORY */
+
+        .category-section {
+            background: #f0f7ff;
+            color: #11243b;
+            padding: 35px 7%;
+        }
+
+        .category-heading {
+            font-size: 20px;
+            margin-bottom: 22px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .category {
+            padding: 22px;
+            border-radius: 15px;
+            background: white;
+            border: 1px solid #dbe9f8;
+            transition: .3s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            border-color: #6ebfff;
+            box-shadow: 0 8px 25px #183c6012;
+        }
+
+        .category-icon {
+            font-size: 34px;
+            margin-bottom: 14px;
+        }
+
+        .category h3 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .category p {
+            font-size: 11px;
+            color: #708197;
+        }
+
+        /* PRODUCTS */
+
+        .shop {
+            padding: 70px 7%;
+        }
+
+        .shop-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .shop-heading h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+        }
+
+        .shop-heading h2 span {
+            color: var(--blue);
+        }
+
+        .shop-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .view-all {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid #25364a;
+            transition: .3s;
+        }
+
+        .product:hover {
+            transform: translateY(-7px);
+            border-color: #8ccfff;
+        }
+
+        .product-image_album {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(albumtr.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_pc {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(pc.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_ls {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(lss.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_kc {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(kc.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_gf {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(gf.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_ph {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(ph.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_kaos {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(kaos.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image_albumcc {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url(albumcc.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #dff2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .product-label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+}
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-type {
+            color: var(--blue);
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .product-info h3 {
+            font-size: 15px;
+            margin: 10px 0;
+        }
+
+        .product-info p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.7;
+            min-height: 40px;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+
+        .add-button {
+            display: block;
+            text-align: center;
+            background: #d5edff;
+            color: #0b1b2c;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            transition: .3s;
+        }
+
+        .add-button:hover {
+            background: white;
+        }
+
+        /* PROMO BANNER */
+
+        .promo {
+            margin: 0 7% 70px;
+            padding: 40px;
+            border: 1px solid #294763;
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 90% 30%,
+                    #20547b, transparent 35%),
+                #10243a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .promo h2 {
+            font-size: 26px;
+            margin: 12px 0;
+        }
+
+        .promo p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .promo-symbol {
+            font-size: 80px;
+            color: var(--blue);
+        }
+
+        /* BENEFITS */
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: #eaf5ff;
+            color: #10243a;
+            padding: 35px 7%;
+            gap: 25px;
+        }
+
+        .benefit {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .benefit-icon {
+            font-size: 30px;
+        }
+
+        .benefit h3 {
+            margin: 12px 0 7px;
+            font-size: 15px;
+        }
+
+        .benefit p {
+            font-size: 12px;
+            color: #64768b;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 7% 20px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 35px;
+        }
+
+        .footer-brand p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+            margin-top: 15px;
+            max-width: 300px;
+        }
+
+        .footer-column h4 {
+            color: var(--blue);
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #29394b;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            color: #7d91a7;
+            font-size: 11px;
+        }
+
+        .copyright span:last-child {
+            color: var(--blue);
+        }
+
+
+
+        /* KATALOG TABLE + ORDER FORM */
+        .extra-section {
+            padding: 65px 7%;
+            scroll-margin-top: 25px;
+        }
+
+        .extra-heading { margin-bottom: 25px; }
+        .extra-heading .eyebrow { margin-bottom: 12px; }
+        .extra-heading h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(27px, 4vw, 36px);
+            margin-bottom: 10px;
+        }
+        .extra-heading h2 span { color: var(--blue); }
+        .extra-heading p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+        .table-shell {
+            overflow-x: auto;
+            border: 1px solid #2b4057;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #102238, #0c1929);
+            box-shadow: 0 15px 40px #00000018;
+        }
+        .catalog-table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .catalog-table th {
+            background: #d9efff;
+            color: #10243a;
+            padding: 16px 18px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .catalog-table td {
+            padding: 17px 18px;
+            border-bottom: 1px solid #25394e;
+            font-size: 13px;
+            color: #dce8f5;
+        }
+        .catalog-table tr:last-child td { border-bottom: 0; }
+        .catalog-table tbody tr { transition: background .2s; }
+        .catalog-table tbody tr:hover { background: #172e46; }
+        .stock {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #173d3a;
+            color: #a6f0d4;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .stock.preorder { background: #3a3155; color: #d9c9ff; }
+        .table-note { color: #8195aa; font-size: 11px; margin-top: 12px; }
+
+        .order-section {
+            padding: 65px 7%;
+            background: #edf6ff;
+            color: #10243a;
+            position: relative;
+            overflow: hidden;
+        }
+        .order-section::before {
+            content: '♡';
+            position: absolute;
+            right: 5%;
+            top: 5px;
+            font-size: 180px;
+            color: #9bd8ff35;
+            pointer-events: none;
+        }
+        .order-layout {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 35px;
+            align-items: start;
+        }
+        .order-intro { padding: 20px 0; }
+        .order-intro .eyebrow { color: #2675ad; }
+        .order-intro h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.12;
+            margin: 16px 0;
+        }
+        .order-intro h2 span { color: #398ac5; }
+        .order-intro p { color: #63758a; font-size: 13px; line-height: 1.9; max-width: 330px; }
+        .order-tip {
+            margin-top: 25px;
+            padding: 15px 17px;
+            border: 1px dashed #a7cce9;
+            border-radius: 14px;
+            color: #42627f;
+            font-size: 12px;
+            line-height: 1.8;
+            background: #ffffff8a;
+        }
+        .order-form {
+            background: white;
+            padding: clamp(20px, 4vw, 32px);
+            border: 1px solid #d8e8f7;
+            border-radius: 22px;
+            box-shadow: 0 18px 50px #24476b12;
+        }
+        .form-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .form-top h3 { font-size: 19px; }
+        .form-top span { color: #398ac5; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label { font-size: 12px; font-weight: 800; color: #314b66; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #d8e4f0;
+            background: #f7fbff;
+            border-radius: 11px;
+            padding: 13px 14px;
+            font: inherit;
+            font-size: 13px;
+            color: #10243a;
+            outline: none;
+            transition: border .2s, box-shadow .2s, background .2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #6ab8ee;
+            background: white;
+            box-shadow: 0 0 0 3px #9bd8ff30;
+        }
+        .form-group textarea { min-height: 90px; resize: vertical; }
+        .form-submit {
+            width: 100%;
+            margin-top: 22px;
+            border: 0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            background: #10243a;
+            color: white;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s;
+        }
+        .form-submit:hover { background: #24577f; transform: translateY(-2px); }
+        .form-disclaimer { color: #8393a5; font-size: 10px; line-height: 1.7; margin-top: 12px; }
+
+        @media (max-width: 750px) {
+            .extra-section, .order-section { padding: 48px 5%; }
+            .order-layout { grid-template-columns: 1fr; gap: 22px; }
+            .order-intro { padding: 0; }
+            .order-intro p { max-width: 520px; }
+        }
+        @media (max-width: 520px) {
+            .form-grid { grid-template-columns: 1fr; gap: 15px; }
+            .form-group.full { grid-column: auto; }
+            .form-top { align-items: flex-start; flex-direction: column; }
+        }
+
+                /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 20px 5%;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            .shop {
+                padding: 55px 5%;
+            }
+        }
+
+        @media (max-width: 550px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                gap: 17px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 60px 6%;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .category-section {
+                padding: 30px 5%;
+            }
+
+            .shop-heading {
+                align-items: start;
+            }
+
+            .shop-heading h2 {
+                font-size: 26px;
+            }
+
+            .product-grid {
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 145px;
+                font-size: 55px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+            }
+
+            .product-info p {
+                font-size: 11px;
+            }
+
+            .price {
+                font-size: 14px;
+            }
+
+            .promo {
+                margin: 0 5% 45px;
+                padding: 25px;
+            }
+
+            .promo h2 {
+                font-size: 21px;
+            }
+
+            .promo-symbol {
+                font-size: 45px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .copyright {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#home" class="logo">
+            💎 TREASURE
+            <small>TEUME SHOP</small>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#shop">Shop</a>
+            <a href="#catalog">Catalog</a>
+            <a href="#order">Order</a>
+            <a href="#about">About</a>
+            <a href="#contact" class="nav-cart">♡ Wishlist</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">HELLO, TEUME! ✦</div>
+
+                <h1>
+                    FIND YOUR<br>
+                    <span>TREASURE.</span>
+                </h1>
+
+                <p>
+                    Your favorite albums, photocards, and merch
+                    in one little corner of happiness.
+                    Made with love for every TEUME. ♡
+                </p>
+
+                <a href="#shop" class="button">
+                    SHOP COLLECTION ↗
+                </a>
+
+                <div class="hero-note">
+                    COLLECT YOUR HAPPINESS · 2026
+                </div>
+            </div>
+        </section>
+
+        <section class="category-section" id="categories">
+            <h2 class="category-heading">Shop by Category ✦</h2>
+
+            <div class="categories">
+                <a href="#shop" class="category">
+                    <div class="category-icon">💿</div>
+                    <h3>Albums</h3>
+                    <p>Music & special editions</p>
+                </a>
+
+                <a href="#shop" class="category">
+                    <div class="category-icon">📸</div>
+                    <h3>Photocards</h3>
+                    <p>Your favorite members</p>
+                </a>
+
+                <a href="#shop" class="category">
+                    <div class="category-icon">💎</div>
+                    <h3>Official MD</h3>
+                    <p>Lightsticks & more</p>
+                </a>
+
+                <a href="#shop" class="category">
+                    <div class="category-icon">🧸</div>
+                    <h3>Fan Goods</h3>
+                    <p>Little things, big love</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="shop" id="shop">
+            <div class="shop-heading">
+                <div>
+                    <h2>BEST <span>SELLERS.</span></h2>
+                    <p>A little treasure for your collection ♡</p>
+                </div>
+
+                <a href="#shop" class="view-all">VIEW ALL ↗</a>
+            </div>
+
+            <div class="product-grid">
+
+                <article class="product">
+                    <div class="product-image_album">
+                        <span class="product-label">BEST SELLER</span>
+                        
+                    </div>
+                    <div class="product-info">
+                        <div class="product-type">ALBUM</div>
+                        <h3>TREASURE Album</h3>
+                        <p>Album collection for every TEUME.</p>
+                        <div class="price">Rp285.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_pc">
+                        <span class="product-label">FAN FAVORITE</span>
+                        
+                    </div>
+                    <div class="product-info">
+                        <div class="product-type">PHOTOCARD</div>
+                        <h3>Photocard Set</h3>
+                        <p>Collect your bias and your bias wrecker.</p>
+                        <div class="price">Rp35.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_ls">
+                        <span class="product-label">COLLECTOR'S PICK</span>
+                        
+                    </div>
+                    <div class="product-info">
+                        <div class="product-type">OFFICIAL MD</div>
+                        <h3>TREASURE Lightstick</h3>
+                        <p>For the concert you've been dreaming of.</p>
+                        <div class="price">Rp750.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_kc">
+                        <span class="product-label">NEW ARRIVAL</span>
+                        
+                    </div>
+                    <div class="product-info">
+                        <div class="product-type">FAN GOODS</div>
+                        <h3>Treasure Keychain</h3>
+                        <p>A tiny treasure to carry everywhere.</p>
+                        <div class="price">Rp45.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_gf"></div>
+                    <div class="product-info">
+                        <div class="product-type">SPECIAL SET</div>
+                        <h3>Album Gift Set</h3>
+                        <p>A special gift for someone you love.</p>
+                        <div class="price">Rp320.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_ph"></div>
+                    <div class="product-info">
+                        <div class="product-type">ACCESSORIES</div>
+                        <h3>Photocard Holder</h3>
+                        <p>Keep your favorite card safe and cute.</p>
+                        <div class="price">Rp25.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_kaos"></div>
+                    <div class="product-info">
+                        <div class="product-type">APPAREL</div>
+                        <h3>TREASURE T-Shirt</h3>
+                        <p>Minimalist style for everyday TEUME.</p>
+                        <div class="price">Rp120.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image_albumcc"></div>
+                    <div class="product-info">
+                        <div class="product-type">SPECIAL EDITION</div>
+                        <h3>Album Collection</h3>
+                        <p>Make a little more room for TREASURE.</p>
+                        <div class="price">Rp299.000</div>
+                        <a href="#contact" class="add-button">
+                            ♡ Add to Wishlist
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+
+
+        <!-- KATALOG PRODUK DALAM BENTUK TABEL -->
+        <section class="extra-section" id="catalog">
+            <div class="extra-heading">
+                <div class="eyebrow">THE LITTLE DETAILS ✦</div>
+                <h2>Product <span>Catalog.</span></h2>
+                <p>Intip detail produk sebelum kamu membawa pulang treasure favoritmu.</p>
+            </div>
+
+            <div class="table-shell">
+                <table class="catalog-table">
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Nama Produk</th>
+                            <th>Kategori</th>
+                            <th>Harga</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>TR-001</td><td>TREASURE Album</td><td>Album</td><td>Rp285.000</td><td><span class="stock">Tersedia</span></td></tr>
+                        <tr><td>TR-002</td><td>Photocard Set</td><td>Photocard</td><td>Rp35.000</td><td><span class="stock">Tersedia</span></td></tr>
+                        <tr><td>TR-003</td><td>TREASURE Lightstick</td><td>Official MD</td><td>Rp750.000</td><td><span class="stock preorder">Cek stok</span></td></tr>
+                        <tr><td>TR-004</td><td>Treasure Keychain</td><td>Fan Goods</td><td>Rp45.000</td><td><span class="stock">Tersedia</span></td></tr>
+                        <tr><td>TR-005</td><td>Album Gift Set</td><td>Special Set</td><td>Rp320.000</td><td><span class="stock preorder">Pre-order</span></td></tr>
+                        <tr><td>TR-006</td><td>Photocard Holder</td><td>Accessories</td><td>Rp25.000</td><td><span class="stock">Tersedia</span></td></tr>
+                        <tr><td>TR-007</td><td>TREASURE T-Shirt</td><td>Apparel</td><td>Rp120.000</td><td><span class="stock">Tersedia</span></td></tr>
+                        <tr><td>TR-008</td><td>Album Collection</td><td>Special Edition</td><td>Rp299.000</td><td><span class="stock preorder">Pre-order</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-note">* Harga dan status di atas merupakan data contoh untuk demonstrasi website.</p>
+        </section>
+
+        <!-- FORM PEMESANAN CUSTOMER -->
+        <section class="order-section" id="order">
+            <div class="order-layout">
+                <div class="order-intro">
+                    <div class="eyebrow">YOUR NEXT TREASURE 💎</div>
+                    <h2>Ready to make it <span>yours?</span></h2>
+                    <p>Isi detail pesananmu di sini. Pastikan data kontak dan alamat sudah benar supaya pesananmu gampang diproses.</p>
+                    <div class="order-tip">♡ <strong>Little reminder:</strong><br>Pilih produk dan jumlah yang kamu inginkan. Kalau punya permintaan khusus, tulis di bagian catatan untuk penjual.</div>
+                </div>
+
+                <form class="order-form" action="#order" method="get">
+                    <div class="form-top">
+                        <h3>Order Form <span>♡</span></h3>
+                        <span>TEUME SHOP / 01</span>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="customer-name">Nama lengkap *</label>
+                            <input type="text" id="customer-name" name="nama" placeholder="Nama penerima" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-contact">Email / WhatsApp *</label>
+                            <input type="text" id="customer-contact" name="kontak" placeholder="Kontak aktif" required>
+                        </div>
+                        <div class="form-group full">
+                            <label for="product-choice">Pilih produk *</label>
+                            <select id="product-choice" name="produk" required>
+                                <option value="" disabled selected>Pilih treasure favoritmu</option>
+                                <option>TREASURE Album - Rp285.000</option>
+                                <option>Photocard Set - Rp35.000</option>
+                                <option>TREASURE Lightstick - Rp750.000</option>
+                                <option>Treasure Keychain - Rp45.000</option>
+                                <option>Album Gift Set - Rp320.000</option>
+                                <option>Photocard Holder - Rp25.000</option>
+                                <option>TREASURE T-Shirt - Rp120.000</option>
+                                <option>Album Collection - Rp299.000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Jumlah *</label>
+                            <input type="number" id="quantity" name="jumlah" min="1" max="99" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment">Metode pembayaran</label>
+                            <select id="payment" name="pembayaran" required>
+                                <option value="" disabled selected>Pilih metode</option>
+                                <option>Transfer bank</option>
+                                <option>E-wallet</option>
+                                <option>COD (jika tersedia)</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label for="address">Alamat pengiriman *</label>
+                            <textarea id="address" name="alamat" placeholder="Nama jalan, desa/kecamatan, kota, kode pos" required></textarea>
+                        </div>
+                        <div class="form-group full">
+                            <label for="notes">Catatan untuk penjual (opsional)</label>
+                            <textarea id="notes" name="catatan" placeholder="Contoh: request bubble wrap ekstra atau pilihan member jika tersedia"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="form-submit" type="submit">Kirim Detail Pesanan ↗</button>
+                    <p class="form-disclaimer">Demo tugas kuliah: formulir ini belum terhubung ke sistem toko. Data tidak otomatis terkirim atau tersimpan di admin.</p>
+                </form>
+            </div>
+        </section>
+
+                <section class="promo" id="about">
+            <div>
+                <div class="eyebrow">A GIFT FOR EVERY TEUME</div>
+                <h2>Your bias deserves a little love. ♡</h2>
+                <p>
+                    Discover your next favorite item and make
+                    your collection a little more special.
+                </p>
+                <br>
+                <a href="#shop" class="button">EXPLORE NOW ↗</a>
+            </div>
+
+            <div class="promo-symbol">✧💎✧</div>
+        </section>
+
+        <section class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">🚚</div>
+                <h3>Safe Delivery</h3>
+                <p>Packaging designed to protect your collection.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">💙</div>
+                <h3>Made With Love</h3>
+                <p>Every little treasure deserves special care.</p>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">💌</div>
+                <h3>Friendly Service</h3>
+                <p>Here to make your shopping experience lovely.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    💎 TREASURE
+                    <small>TEUME SHOP</small>
+                </a>
+
+                <p>
+                    A little online corner made for TREASURE lovers.
+                    Collect your happiness, one treasure at a time. ♡
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>EXPLORE</h4>
+                <a href="#home">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#shop">Our Products</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>FOLLOW US</h4>
+                <a href="https://www.instagram.com/alloveeta?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw==">Instagram</a>
+                <a href="#contact">TikTok</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <span>© 2026 TEUME SHOP. Fan-made demo website.</span>
+            <span>FOREVER WITH TREASURE ♡</span>
+        </div>
+    </footer>
+
+</body>
+</html>
