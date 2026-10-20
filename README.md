@@ -1,5 +1,3 @@
-
-<!DOCTYPE html>
 <html lang="id">
 <head>
     <title>TREASURE — Teume Shop</title>
